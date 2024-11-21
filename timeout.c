@@ -84,7 +84,7 @@ void timeout_init(void) {
 
 void timeout_configure(systime_t timeout, float brake_current, KILL_SW_MODE kill_sw_mode) {
 	timeout_msec = timeout;
-	timeout_brake_current = brake_current;
+	timeout_brake_current = 0.0f;
 	timeout_kill_sw_mode = kill_sw_mode;
 }
 
@@ -189,17 +189,19 @@ static THD_FUNCTION(timeout_thread, arg) {
 
 	chRegSetThreadName("Timeout");
 
+	palSetPadMode(HW_ICU_GPIO, HW_ICU_PIN, PAL_MODE_INPUT_PULLUP);
+
 	for(;;) {
 		bool kill_sw = false;
 
-		switch (timeout_kill_sw_mode) {
+		/*switch (timeout_kill_sw_mode) {
 		case KILL_SW_MODE_PPM_LOW:
 			kill_sw = !palReadPad(HW_ICU_GPIO, HW_ICU_PIN);
 			break;
 
-		case KILL_SW_MODE_PPM_HIGH:
+		case KILL_SW_MODE_PPM_HIGH:*/
 			kill_sw = palReadPad(HW_ICU_GPIO, HW_ICU_PIN);
-			break;
+			/*break;
 
 		case KILL_SW_MODE_ADC2_LOW:
 			kill_sw = ADC_VOLTS(ADC_IND_EXT2) < 1.65;
@@ -211,7 +213,7 @@ static THD_FUNCTION(timeout_thread, arg) {
 
 		default:
 			break;
-		}
+		}*/
 
 		if (kill_sw || (timeout_msec != 0 && chVTTimeElapsedSinceX(last_update_time) > MS2ST(timeout_msec))) {
 			if (!has_timeout && !kill_sw_active) {
