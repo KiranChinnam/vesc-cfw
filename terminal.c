@@ -1128,6 +1128,20 @@ void terminal_process_string(char *str) {
 			}
 		}
 	} else if (strcmp(argv[0], "fw_info") == 0) {
+		commands_printf("VESC_CFW - Modified by Kiran Chinnam");
+		commands_printf("Active mods:  ");
+		commands_printf(" - PWM_DRIVER_DISABLE");
+		commands_printf(" - SERVO_DEC_DISABLE");
+		commands_printf(" - KILLSW_PPM_HIGH");
+		commands_printf(" - PPM_PULLUP");
+		commands_printf(" - NO_TIMEOUT_CURRENT");
+		commands_printf(" - LISP_ICU_START_DISABLE");
+		commands_printf(" - LISP_SET_SERVO_DISABLE");
+		commands_printf(" - APP_PPM_DISABLE");
+		commands_printf(" - APP_PPM_UART_DISABLE");
+		commands_printf(" - SERVO_OUTPUT_DISABLE");
+		commands_printf(" - CUSTOM_DEF_APPCONF");
+		commands_printf("---------------------------------");
 		commands_printf("Git Branch: %s", GIT_BRANCH_NAME);
 		commands_printf("Git Hash  : %s", GIT_COMMIT_HASH);
 		commands_printf("Compiler  : %s", ARM_GCC_VERSION);
