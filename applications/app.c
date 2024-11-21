@@ -87,14 +87,14 @@ void app_set_configuration(app_configuration *conf) {
 				appconf.app_to_use != APP_PPM_UART &&
 				appconf.servo_out_enable) {
 			servodec_stop();
-			pwm_servo_init_servo();
+			//pwm_servo_init_servo();
 		} else {
 			pwm_servo_stop();
 		}
 
 		switch (appconf.app_to_use) {
 		case APP_PPM:
-			app_ppm_start();
+			//app_ppm_start();
 			break;
 
 		case APP_ADC:
@@ -108,7 +108,7 @@ void app_set_configuration(app_configuration *conf) {
 
 		case APP_PPM_UART:
 			hw_stop_i2c();
-			app_ppm_start();
+			//app_ppm_start();
 			app_uartcomm_start(UART_PORT_COMM_HEADER);
 			break;
 

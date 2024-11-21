@@ -111,6 +111,7 @@ static ICUConfig icucfg = {
  * decoded. Can be NULL.
  */
 void servodec_init(void (*d_func)(void)) {
+	return;
 	icuStart(&HW_ICU_DEV, &icucfg);
 	palSetPadMode(HW_ICU_GPIO, HW_ICU_PIN, PAL_MODE_ALTERNATE(HW_ICU_GPIO_AF));
 	icuStartCapture(&HW_ICU_DEV);
@@ -131,7 +132,7 @@ void servodec_init(void (*d_func)(void)) {
  * Stop the servo decoding driver
  */
 void servodec_stop(void) {
-	if (is_running) {
+	if (false && is_running) {
 		icuStopCapture(&HW_ICU_DEV);
 		icuStop(&HW_ICU_DEV);
 		palSetPadMode(HW_ICU_GPIO, HW_ICU_PIN, PAL_MODE_INPUT);
@@ -169,7 +170,7 @@ void servodec_set_pulse_options(float start, float end, bool median_filter) {
  * The servo value in the range [-1.0 1.0].
  */
 float servodec_get_servo(int servo_num) {
-	if (servo_num < SERVO_NUM) {
+	if (false && servo_num < SERVO_NUM) {
 		return servo_pos[servo_num];
 	} else {
 		return 0.0;
@@ -197,7 +198,7 @@ uint32_t servodec_get_time_since_update(void) {
  * The length of the last received pulse.
  */
 float servodec_get_last_pulse_len(int servo_num) {
-	if (servo_num < SERVO_NUM) {
+	if (false && servo_num < SERVO_NUM) {
 		return last_len_received[servo_num];
 	} else {
 		return 0.0;
