@@ -691,6 +691,7 @@ static lbm_value ext_puts(lbm_value *args, lbm_uint argn) {
 }
 
 static lbm_value ext_set_servo(lbm_value *args, lbm_uint argn) {
+	return ENC_SYM_TERROR;
 	LBM_CHECK_ARGN_NUMBER(1);
 	pwm_servo_set_servo_out(lbm_dec_as_float(args[0]));
 	return ENC_SYM_TRUE;
@@ -4988,6 +4989,7 @@ static ICUConfig icucfg = {
 };
 
 static lbm_value ext_icu_start(lbm_value *args, lbm_uint argn) {
+	return ENC_SYM_TERROR;
 	LBM_CHECK_ARGN_NUMBER(2);
 	servodec_stop();
 	pwm_servo_stop();

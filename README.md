@@ -1,12 +1,24 @@
-# VESC firmware
+# Custom VESC firmware
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Travis CI Status](https://travis-ci.com/vedderb/bldc.svg?branch=master)](https://travis-ci.com/vedderb/bldc)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/75e90ffbd46841a3a7be2a9f7a94c242)](https://www.codacy.com/app/vedderb/bldc?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=vedderb/bldc&amp;utm_campaign=Badge_Grade)
-[![Contributors](https://img.shields.io/github/contributors/vedderb/bldc.svg)](https://github.com/vedderb/bldc/graphs/contributors)
-[![Watchers](https://img.shields.io/github/watchers/vedderb/bldc.svg)](https://github.com/vedderb/bldc/watchers)
-[![Stars](https://img.shields.io/github/stars/vedderb/bldc.svg)](https://github.com/vedderb/bldc/stargazers)
-[![Forks](https://img.shields.io/github/forks/vedderb/bldc.svg)](https://github.com/vedderb/bldc/network/members)
+A customised version of Benjamin Vedder's VESC firmware. See the original at [https://github.com/vedderb/bldc/](https://github.com/vedderb/bldc)
+
+> [!IMPORTANT]  
+> This is a customised build of the VESC firmware. Some settings from the VESC tool are permanently set here for safety. The value configured through the VESC tool will be ignored. You can check if you are running a custom build by using the VESC terminal, with the command `fw_info`.
+> 
+> This fork will be synced with the main repo upon request. At present it is a beta version of v6.06.
+>
+> * The killswitch is hardcoded to the PPM_HIGH mode. In addition, the internal pullups are activated so that inadvertent disconnection of killswitch wiring fails safe and activates the killswitch.
+>   * The option to use the PPM input as a button is allowed by the firmware, but will not function as desired since the killswitch is controlled by the same pin. It is recommended to use rx and tx as buttons instead, or to use LispBM to override the buttons.
+>   * To prevent conflicting use of the PPM pin:
+>     * The PWM and Servo Decoder drivers have been disabled.
+>     * The LispBM commands `set_servo` and `icu_start` are disabled and will return an error.
+>     * The PPM and UART_PPM apps are disabled. 
+>     * Servo output is disabled.
+> * Customised `fw_info` command output to allow identification of modified VESC firmware and active modifications.
+> * Timeout brake current is forced to 0 so that VESC cannot draw any traction current during killswitch.
+> * The default app configuration is customised. See the commit history for `applications/appconf_default.h` for details.
+
+---
 
 An open source motor controller firmware.
 

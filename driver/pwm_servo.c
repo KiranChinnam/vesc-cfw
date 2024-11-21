@@ -33,6 +33,7 @@
 static volatile bool m_is_running = false;
 
 uint32_t pwm_servo_init(uint32_t freq_hz, float duty) {
+	return 0;
 	// Ensure that there is no overflow and that the resolution is reasonable
 	utils_truncate_number_uint32(&freq_hz, TIM_CLOCK / 65000, TIM_CLOCK / 100);
 
@@ -71,10 +72,12 @@ uint32_t pwm_servo_init(uint32_t freq_hz, float duty) {
 }
 
 void pwm_servo_init_servo(void) {
+	return;
 	pwm_servo_init(SERVO_OUT_RATE_HZ, 0.0);
 }
 
 void pwm_servo_stop(void) {
+	return;
 	if (m_is_running) {
 		palSetPadMode(HW_ICU_GPIO, HW_ICU_PIN, PAL_MODE_INPUT);
 	}
@@ -84,7 +87,7 @@ void pwm_servo_stop(void) {
 }
 
 float pwm_servo_set_duty(float duty) {
-	if (!m_is_running) {
+	if (true || !m_is_running) {
 		return -1.0;
 	}
 
@@ -102,7 +105,7 @@ float pwm_servo_set_duty(float duty) {
 }
 
 void pwm_servo_set_servo_out(float output) {
-	if (!m_is_running) {
+	if (true || !m_is_running) {
 		return;
 	}
 
@@ -120,7 +123,7 @@ void pwm_servo_set_servo_out(float output) {
 }
 
 bool pwm_servo_is_running(void) {
-	return m_is_running;
+	return false; m_is_running;
 }
 
 #pragma GCC pop_options
