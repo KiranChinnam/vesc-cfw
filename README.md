@@ -5,7 +5,7 @@ A customised version of Benjamin Vedder's VESC firmware. See the original at [ht
 > [!IMPORTANT]  
 > This is a customised build of the VESC firmware. Some settings from the VESC tool are permanently set here for safety. The value configured through the VESC tool will be ignored. You can check if you are running a custom build by using the VESC terminal, with the command `fw_info`.
 > 
-> This fork will be synced with the main repo upon request. At present it is a beta version of v6.06.
+> This fork will be synced with the main repo upon request. At present it is a stable version of v6.05.
 >
 > * The killswitch is hardcoded to the PPM_HIGH mode. In addition, the internal pullups are activated so that inadvertent disconnection of killswitch wiring fails safe and activates the killswitch.
 >   * The option to use the PPM input as a button is allowed by the firmware, but will not function as desired since the killswitch is controlled by the same pin. It is recommended to use rx and tx as buttons instead, or to use LispBM to override the buttons.
